@@ -25,6 +25,7 @@ public class WaterVision implements Ability, Listener {
 
     @EventHandler
     public void onServerTickEnd(ServerTickEndEvent event) {
+//      TODO() optimize this function
         for (Player player : Bukkit.getOnlinePlayers()) {
             AbilityRegister.runForAbility(player, getKey(), () -> {
                 if (OriginsReborn.getNMSInvoker().isUnderWater(player)) {

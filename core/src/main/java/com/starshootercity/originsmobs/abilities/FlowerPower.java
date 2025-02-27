@@ -36,6 +36,7 @@ public class FlowerPower implements VisibleAbility, Listener {
 
     @EventHandler
     public void onServerTickEnd(ServerTickEndEvent event) {
+        //      TODO() optimize this function
         if (event.getTickNumber() % 40 != 0) return;
         for (Player player : Bukkit.getOnlinePlayers()) {
             AbilityRegister.runForAbility(player, getKey(), () -> {

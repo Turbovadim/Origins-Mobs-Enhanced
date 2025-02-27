@@ -34,6 +34,7 @@ public class SurfaceWeakness implements VisibleAbility, Listener {
 
     @EventHandler
     public void onServerTickEnd(ServerTickEndEvent event) {
+        //      TODO() optimize this function
         for (Player player : Bukkit.getOnlinePlayers()) {
             AbilityRegister.runForAbility(player, getKey(), () -> {
                 if (!player.isInWater()) {

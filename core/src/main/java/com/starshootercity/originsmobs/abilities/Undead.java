@@ -38,6 +38,7 @@ public class Undead implements VisibleAbility, Listener {
 
     @EventHandler
     public void onServerTickEnd(ServerTickEndEvent ignored) {
+        //      TODO() optimize this function
         for (Player player : Bukkit.getOnlinePlayers()) {
             AbilityRegister.runForAbility(player, getKey(),
                     () -> {

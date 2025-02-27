@@ -52,6 +52,7 @@ public class ItemCollector implements VisibleAbility, Listener {
 
     @EventHandler
     public void onServerTickEnd(ServerTickEndEvent event) {
+        //      TODO() optimize this function
         for (Player player : Bukkit.getOnlinePlayers()) {
             AbilityRegister.runForAbility(player, getKey(), () -> {
                 List<Entity> entities = player.getNearbyEntities(2.5, 2.5, 2.5);
