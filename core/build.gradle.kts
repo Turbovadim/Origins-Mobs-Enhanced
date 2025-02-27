@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    kotlin("jvm")
 }
 
 repositories {
@@ -16,6 +17,7 @@ dependencies {
     compileOnly(project(":1.21"))
     compileOnly(project(":1.21.1"))
     compileOnly(project(":1.21.3"))
+    compileOnly(project(":1.21.4"))
     compileOnly(project(":1.20.6"))
     compileOnly(project(":1.20.4"))
     compileOnly(project(":1.20.3"))
@@ -27,7 +29,8 @@ dependencies {
     compileOnly(project(":1.19.2"))
     compileOnly(project(":1.19.1"))
     compileOnly(project(":1.19"))
-    compileOnly(files("libs/Origins-Reborn-2.3.29-all.jar"))
+    compileOnly(files("libs/Origins-Reborn-Enhanced-2.4.9-all.jar"))
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks {
@@ -38,4 +41,7 @@ tasks {
 
 tasks.test {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(17)
 }

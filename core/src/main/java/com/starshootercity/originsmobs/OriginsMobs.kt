@@ -1,107 +1,110 @@
-package com.starshootercity.originsmobs;
+package com.starshootercity.originsmobs
 
-import com.starshootercity.originsmobs.abilities.*;
-import com.starshootercity.OriginsAddon;
-import com.starshootercity.abilities.Ability;
-import org.bukkit.Bukkit;
-import org.jetbrains.annotations.NotNull;
+import com.starshootercity.originsmobs.abilities.*
+import com.starshootercity.OriginsAddon
+import com.starshootercity.abilities.Ability
+import org.bukkit.Bukkit
 
-import java.util.List;
+class OriginsMobs : OriginsAddon() {
 
-public class OriginsMobs extends OriginsAddon {
-    @Override
-    public @NotNull String getNamespace() {
-        return "moborigins";
+    override fun getNamespace(): String = "moborigins"
+
+    override fun getAbilities(): List<Ability> = listOf(
+        SmallBug(),
+        SmallFox(),
+        LowerTotemChance(),
+        SnowTrail(),
+        StrongerSnowballs(),
+        BeeWings(),
+        Stinger(),
+        BecomesElderGuardian(),
+        WarpedFungusEater(),
+        WaterCombatant(),
+        QueenBee(),
+        Undead(),
+        Sly(),
+        TimidCreature(),
+        PillagerAligned(),
+        Illager(),
+        WitchParticles(),
+        MiningFatigueImmune(),
+        SmallWeak(),
+        SmallWeakKnockback(),
+        RideableCreature(),
+        GuardianAlly(),
+        SurfaceSlowness(),
+        SurfaceWeakness(),
+        GuardianSpikes(),
+        PrismarineSkin(),
+        CarefulGatherer(),
+        FrigidStrength(),
+        BetterBerries(),
+        WolfBody(),
+        AlphaWolf(),
+        ItemCollector(),
+        BetterPotions(),
+        ElderMagic(),
+        ElderSpikes(),
+        WaterVision(),
+        SummonFangs(),
+        FullMoon(),
+        FullMoonHealth(),
+        FullMoonAttack(),
+        WolfPack(),
+        WolfPackAttack(),
+        ZombieHunger(),
+        Temperature.INSTANCE,
+        Overheat(),
+        Melting(),
+        MeltingSpeed(),
+        WolfHowl(),
+        TridentExpert(),
+        FlowerPower(),
+        Bouncy(),
+        LavaWalk(),
+        WaterBreathing(),
+        Split(),
+        PotionAction()
+    )
+
+    init {
+        instance = this
     }
 
-    @Override
-    public @NotNull List<Ability> getAbilities() {
-        return List.of(
-                new SmallBug(),
-                new SmallFox(),
-                new LowerTotemChance(),
-                new SnowTrail(),
-                new StrongerSnowballs(),
-                new BeeWings(),
-                new Stinger(),
-                new BecomesElderGuardian(),
-                new WarpedFungusEater(),
-                new WaterCombatant(),
-                new QueenBee(),
-                new Undead(),
-                new Sly(),
-                new TimidCreature(),
-                new PillagerAligned(),
-                new Illager(),
-                new WitchParticles(),
-                new MiningFatigueImmune(),
-                new SmallWeak(),
-                new SmallWeakKnockback(),
-                new RideableCreature(),
-                new GuardianAlly(),
-                new SurfaceSlowness(),
-                new SurfaceWeakness(),
-                new GuardianSpikes(),
-                new PrismarineSkin(),
-                new CarefulGatherer(),
-                new FrigidStrength(),
-                new BetterBerries(),
-                new WolfBody(),
-                new AlphaWolf(),
-                new ItemCollector(),
-                new BetterPotions(),
-                new ElderMagic(),
-                new ElderSpikes(),
-                new WaterVision(),
-                new SummonFangs(),
-                new FullMoon(),
-                new FullMoonHealth(),
-                new FullMoonAttack(),
-                new WolfPack(),
-                new WolfPackAttack(),
-                new ZombieHunger(),
-                Temperature.INSTANCE,
-                new Overheat(),
-                new Melting(),
-                new MeltingSpeed(),
-                new WolfHowl(),
-                new TridentExpert(),
-                new FlowerPower(),
-                new Bouncy(),
-                new LavaWalk(),
-                new WaterBreathing(),
-                new Split(),
-                new PotionAction()
-        );
-    }
-    private static MobsNMSInvoker nmsInvoker;
+    companion object {
+        private lateinit var nmsInvoker: MobsNMSInvoker
 
-    private static void initializeNMSInvoker() {
-        nmsInvoker = switch (Bukkit.getMinecraftVersion()) {
-            case "1.19" -> new MobsNMSInvokerV1_19();
-            case "1.19.1" -> new MobsNMSInvokerV1_19_1();
-            case "1.19.2" -> new MobsNMSInvokerV1_19_2();
-            case "1.19.3" -> new MobsNMSInvokerV1_19_3();
-            case "1.19.4" -> new MobsNMSInvokerV1_19_4();
-            case "1.20" -> new MobsNMSInvokerV1_20();
-            case "1.20.1" -> new MobsNMSInvokerV1_20_1();
-            case "1.20.2" -> new MobsNMSInvokerV1_20_2();
-            case "1.20.3" -> new MobsNMSInvokerV1_20_3();
-            case "1.20.4" -> new MobsNMSInvokerV1_20_4();
-            case "1.20.5", "1.20.6" -> new MobsNMSInvokerV1_20_6();
-            case "1.21" -> new MobsNMSInvokerV1_21();
-            case "1.21.1" -> new MobsNMSInvokerV1_21_1();
-            case "1.21.2", "1.21.3" -> new MobsNMSInvokerV1_21_3();
-            default -> throw new IllegalStateException("Unexpected version: " + Bukkit.getMinecraftVersion() + " only versions 1.20 - 1.20.6 are supported");
-        };
+        private lateinit var instance: OriginsMobs
+
+        private fun initializeNMSInvoker() {
+            nmsInvoker = when (Bukkit.getMinecraftVersion()) {
+                "1.19" -> MobsNMSInvokerV1_19()
+                "1.19.1" -> MobsNMSInvokerV1_19_1()
+                "1.19.2" -> MobsNMSInvokerV1_19_2()
+                "1.19.3" -> MobsNMSInvokerV1_19_3()
+                "1.19.4" -> MobsNMSInvokerV1_19_4()
+                "1.20" -> MobsNMSInvokerV1_20()
+                "1.20.1" -> MobsNMSInvokerV1_20_1()
+                "1.20.2" -> MobsNMSInvokerV1_20_2()
+                "1.20.3" -> MobsNMSInvokerV1_20_3()
+                "1.20.4" -> MobsNMSInvokerV1_20_4()
+                "1.20.5", "1.20.6" -> MobsNMSInvokerV1_20_6()
+                "1.21" -> MobsNMSInvokerV1_21()
+                "1.21.1" -> MobsNMSInvokerV1_21_1()
+                "1.21.2", "1.21.3" -> MobsNMSInvokerV1_21_3()
+                "1.21.4" -> MobsNMSInvokerV1_21_4()
+                else -> throw IllegalStateException("Unexpected version: ${Bukkit.getMinecraftVersion()} only versions 1.20 - 1.20.6 are supported")
+            }
+        }
+
+        @JvmStatic
+        fun getNMSInvoker(): MobsNMSInvoker = nmsInvoker
+
+        @JvmStatic
+        fun getInstance(): OriginsMobs = instance
     }
 
-    public static MobsNMSInvoker getNMSInvoker() {
-        return nmsInvoker;
-    }
-
-    @Override
-    public void onRegister() {
-        initializeNMSInvoker();
+    override fun onRegister() {
+        initializeNMSInvoker()
     }
 }

@@ -27,7 +27,7 @@ public class BecomesElderGuardian implements Ability, Listener {
         Player player = event.getEntity().getKiller();
         if (player == null) return;
         AbilityRegister.runForAbility(player, getKey(), () -> {
-            OriginSwapper.setOrigin(player, AddonLoader.originNameMap.get("elder guardian"), PlayerSwapOriginEvent.SwapReason.PLUGIN, false);
+            OriginSwapper.setOrigin(player, AddonLoader.getOrigin("elder guardian"), PlayerSwapOriginEvent.SwapReason.PLUGIN, false, AddonLoader.layers.get(0));
             player.sendMessage(Component.text("You have grown into an Elder Guardian!")
                     .color(NamedTextColor.YELLOW));
         });
